@@ -19,6 +19,8 @@
   "homepage": "https://github.com/Wandersonfsa/Controle-qualidade-sementes#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sqlite": "^4.0.25",
+    "sqlite3": "^5.0.2"
   }
 }
