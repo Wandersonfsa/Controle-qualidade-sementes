@@ -37,6 +37,27 @@ app.post('/api/users', async (request, response) => {
 
 });
 
+
+app.delete('/api/users/:id', async (request, response) => {
+    const { name, last_name, key, mail} = request.body;
+    const { id } = request.params;
+    const db = await openDatabase();
+    const data = await db.run(`
+        DELETE FROM users
+        WHERE id = ?
+    `, [id]);
+    db.close();
+    response.send({
+        id,
+        name,
+        message: `Usuario [${id}] removido com sucesso`, 
+        last_name,
+        key,
+        mail
+    })
+
+});
+
 app.put('/api/users/:id', async (request, response) => {
     const { name, last_name, key, mail} = request.body;
     const { id } = request.params;
@@ -74,28 +95,6 @@ app.put('/api/users/:id', async (request, response) => {
 
 });
 
-app.delete('/api/users/:id', async (request, response) => {
-    const { name, last_name, key, mail} = request.body;
-    const { id } = request.params;
-    const db = await openDatabase();
-    const data = await db.run(`
-        DELETE FROM users
-        WHERE id = ?
-    `, [id]);
-    db.close();
-    response.send({
-        id,
-        name,
-        message: `Usuario [${id}] removido com sucesso`, 
-        last_name,
-        key,
-        mail
-    })
-
-});
-
 app.listen(8000, () => {
     console.log("Servidor rodando na porta 8000...")
 });
-
-
