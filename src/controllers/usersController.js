@@ -61,8 +61,7 @@ export const updateUsers = async (request, response) => {
     if (users) {
         const data = await db.run(`
             UPDATE users 
-            SET model = ?, 
-            name = ?, 
+            SET name = ?, 
             last_name = ?, 
             key = ?, 
             mail = ?

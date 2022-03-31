@@ -51,17 +51,16 @@ export const updateProducers = async (request, response) => {
     
     const db = await openDatabase();
 
-    const producers = await db.get(`
+    const producer = await db.get(`
         SELECT * FROM producers WHERE id = ?
         `,[id]);
 
-    if (producers) {
+    if (producer) {
         const data = await db.run(`
             UPDATE producers 
-            SET model = ?, 
-            name = ?, 
-            cpf = ?, 
-            IE = ?,
+            SET name = ?, 
+                cpf = ?,
+                IE = ?
         WHERE id = ?
 
         `, [name, cpf, IE, id]);
